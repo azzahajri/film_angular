@@ -1,0 +1,40 @@
+<!--<div class="bloc">
+  <div [ngStyle]="{ 'background-color': 'green'}">
+    <h4 [ngStyle]="{ color: getColor() }">{{ tabFilms[0].nomFilm }}</h4>
+    <img class="image" [src]="tabFilms[0].imageFilm" /><br />
+    <button (click)="onJaime(0)">J’aime</button><br />
+    <button (click)=" onJaimePas(0)">J’aime pas</button><br />
+  </div>
+  <div [ngStyle]="{ 'background-color': 'yellow'}">
+    <h4 *ngIf="tabFilms[1].disponible">{{ tabFilms[1].nomFilm }}</h4>
+    <img class="image" [src]="tabFilms[1].imageFilm" /><br />
+    <button (click)="onJaime(1)">J’aime</button><br />
+    <button (click)=" onJaimePas(0)">J’aime pas</button><br />
+  </div>
+  <div [ngStyle]="{ 'background-color': 'red'}">
+    <h4 *ngIf="tabFilms[2].disponible">{{ tabFilms[2].nomFilm }}</h4>
+    <img class="image" [src]="tabFilms[2].imageFilm" /><br />
+    <button (click)="onJaime(2)">J’aime</button><br />
+    <button (click)=" onJaimePas(0)">J’aime pas</button><br />
+  </div>
+</div>-->
+<!--
+<div class="bloc" >
+  <div *ngFor="let item of tabFilms" [ngStyle]="{ 'background-color': 'red'}">
+   <h4 >{{ item.nomFilm }}</h4>
+   <p><img class="image" [src]="item.imageFilm" /></p><br />
+   <button (click)="onJaime(0)">J’aime</button><br />
+
+  </div>
+</div>-->
+<div class="bloc" >
+  <div *ngFor="let item of tabFilms ; let index = index" [ngStyle]="{backgroundColor:getColor(item.nbJaime, item.nbJenaimepas)}">
+   <h4 >{{item.nomFilm}} >Nom du Film{{ item.nomFilm }}</h4>
+   <h4 *ngIf="item.disponible; then thenBlock else elseBlock"></h4>
+   <ng-template #thenBlock> {{item.nomFilm}} est disponible</ng-template>
+   <ng-template #elseBlock> {{item.nomFilm}} n'est pas disponible</ng-template>
+   <img class="image" [src]="item.imageFilm" /><br />
+   <button (click)="onJaime(index)">J’aime</button> {{item.nbJaime }} <br />
+   <button (click)="onJaimePas(index)">J’aime</button> {{item.nbJenaimepas }} <br />
+  </div>
+</div>
